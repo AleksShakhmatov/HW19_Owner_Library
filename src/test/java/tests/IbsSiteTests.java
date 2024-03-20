@@ -1,13 +1,14 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Tag("demo")
+@Owner("alekssh")
 public class IbsSiteTests extends TestBase {
 
     @Test

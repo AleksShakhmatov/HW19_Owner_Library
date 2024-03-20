@@ -3,6 +3,8 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import helpers.Attach;
+import org.aeonbits.owner.ConfigFactory;
+import config.WebDriverConfig;
 import org.junit.jupiter.api.BeforeAll;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -15,13 +17,15 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
 
+        WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class);
         Configuration.baseUrl = "https://ibs.ru/";
-        Configuration.pageLoadStrategy = "normal";
+        Configuration.pageLoadStrategy = driverConfig.pageLoadStrategy();
         Configuration.timeout = 5000;
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "100.0";
-        Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = driverConfig.browserName();
+        Configuration.browserVersion = driverConfig.browserVersion();
+        Configuration.browserSize = driverConfig.browserSize();
+        Configuration.remote = driverConfig.browserRemoteUrl();
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
