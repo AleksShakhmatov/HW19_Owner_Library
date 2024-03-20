@@ -5,7 +5,7 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/${driver}.properties"})
+        "classpath:config/${environment}.properties"})
 
 public interface WebDriverConfig extends Config {
     @Key("browserName")
