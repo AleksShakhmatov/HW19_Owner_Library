@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class TestBase {
     @BeforeAll
-    static void beforeAll() {
+    static void setUpConfig() {
 
         WebDriverConfig driverConfig = ConfigFactory.create(WebDriverConfig.class);
         Configuration.baseUrl = "https://ibs.ru/";
@@ -36,7 +36,7 @@ public class TestBase {
     }
 
     @BeforeEach
-    void beforeEach() {
+    void addListener() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
